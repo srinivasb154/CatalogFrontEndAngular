@@ -1,0 +1,67 @@
+<div class="product-search-container">
+  <h2>Search Product</h2>
+
+  <!-- Back to Products Link -->
+  <a routerLink="/products">Back to Products</a>
+
+  <form [formGroup]="productSearchForm" (ngSubmit)="onSearch()">
+    <div>
+      <label for="productName">Product Name:</label>
+      <input id="productName" type="text" formControlName="productName" />
+    </div>
+    <div>
+      <label for="sku">SKU:</label>
+      <input id="sku" type="text" formControlName="sku" />
+    </div>
+    <div>
+      <label for="categoryId">Category:</label>
+      <select id="categoryId" formControlName="categoryId">
+        <option value="">-- Select Category --</option>
+        <option *ngFor="let category of categories" [value]="category._id">
+          {{ category.categoryName }}
+        </option>
+      </select>
+    </div>
+    <div>
+      <label for="brandId">Brand:</label>
+      <select id="brandId" formControlName="brandId">
+        <option value="">-- Select Brand --</option>
+        <option *ngFor="let brand of brands" [value]="brand._id">
+          {{ brand.brandName }}
+        </option>
+      </select>
+    </div>
+    <button type="submit">Search</button>
+  </form>
+
+  <table *ngIf="products.length > 0">
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>SKU</th>
+        <th>Short Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of paginatedProducts">
+        <td>
+          <a (click)="navigateToProductTabs(product)" href="javascript:void(0)">
+            {{ product.productName }}
+          </a>
+        </td>
+        <td>{{ product.sku }}</td>
+        <td>{{ product.shortDescription }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="products.length > 0">
+    <button
+      *ngFor="let page of totalPages"
+      (click)="onPageChange(page)"
+      [class.active]="page === currentPage"
+    >
+      {{ page }}
+    </button>
+  </div>
+</div>

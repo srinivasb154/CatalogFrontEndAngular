@@ -1,0 +1,24 @@
+.product-options-container {
+  text-align: center;
+  margin: 20px;
+}
+
+.options-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.options-list li {
+  margin: 10px 0;
+}
+
+.options-list li a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.options-list li a:hover {
+  text-decoration: underline;
+}

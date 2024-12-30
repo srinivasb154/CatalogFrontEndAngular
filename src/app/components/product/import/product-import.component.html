@@ -1,0 +1,29 @@
+<div class="product-import-container">
+  <a routerLink="/product-options">Back to Product Options</a>
+  <h2>Product Import Tool</h2>
+
+  <form [formGroup]="importForm">
+    <div class="form-group">
+      <label>
+        <input type="radio" formControlName="mode" value="Add" /> Add
+      </label>
+      <label>
+        <input type="radio" formControlName="mode" value="Replace" /> Replace
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label for="file">Choose File:</label>
+      <input
+        type="file"
+        id="file"
+        (change)="onFileChange($event)"
+        accept=".csv"
+      />
+    </div>
+
+    <button type="button" (click)="handleImport()">Import</button>
+  </form>
+
+  <p *ngIf="message" class="message">{{ message }}</p>
+</div>

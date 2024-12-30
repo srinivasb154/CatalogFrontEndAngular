@@ -1,0 +1,61 @@
+<div class="add-assets-container">
+  <a [routerLink]="['/products']">Back to Product Options</a>
+  <h2>Add Product Assets</h2>
+
+  <form [formGroup]="assetForm">
+    <div class="inline-fields">
+      <label for="categoryId">Category:</label>
+      <select id="categoryId" formControlName="categoryId">
+        <option value="">-- Select Category --</option>
+        <option *ngFor="let category of categories" [value]="category._id">
+          {{ category.categoryName }}
+        </option>
+      </select>
+
+      <label for="brandId">Brand:</label>
+      <select id="brandId" formControlName="brandId">
+        <option value="">-- Select Brand --</option>
+        <option *ngFor="let brand of brands" [value]="brand._id">
+          {{ brand.brandName }}
+        </option>
+      </select>
+
+      <button type="button" (click)="fetchProducts()">Fetch Products</button>
+    </div>
+
+    <div>
+      <label for="productId">Product:</label>
+      <select id="productId" formControlName="productId">
+        <option value="">-- Select Product --</option>
+        <option *ngFor="let product of products" [value]="product._id">
+          {{ product.productName }}
+        </option>
+      </select>
+    </div>
+  </form>
+
+  <input type="file" (change)="handleFileSelect($event)" multiple />
+  <button type="button" (click)="handleOk()">OK</button>
+
+  <h3>Uploaded Assets</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Asset ID</th>
+        <th>File Name</th>
+        <th>Type</th>
+        <th>Extension</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let asset of assets">
+        <td>{{ asset.productAssetId }}</td>
+        <td>{{ asset.fileName }}</td>
+        <td>{{ asset.type }}</td>
+        <td>{{ asset.extension }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button type="button" (click)="saveAssets()">Save Assets</button>
+</div>

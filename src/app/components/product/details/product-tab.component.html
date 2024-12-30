@@ -1,0 +1,74 @@
+<div class="product-tab-container">
+  <button (click)="goBack()">Back to Product Search</button>
+
+  <h2>Product Tabs</h2>
+
+  <!-- Tabs Navigation -->
+  <ul class="tabs">
+    <li
+      [class.active]="activeTab === 'description'"
+      (click)="switchTab('description')"
+    >
+      Description
+    </li>
+    <li
+      [class.active]="activeTab === 'specifications'"
+      (click)="switchTab('specifications')"
+    >
+      Specifications
+    </li>
+    <li [class.active]="activeTab === 'reviews'" (click)="switchTab('reviews')">
+      Reviews
+    </li>
+    <li
+      [class.active]="activeTab === 'inventory'"
+      (click)="switchTab('inventory')"
+    >
+      Inventory
+    </li>
+    <li [class.active]="activeTab === 'pricing'" (click)="switchTab('pricing')">
+      Pricing
+    </li>
+  </ul>
+
+  <!-- Tab Content -->
+  <div *ngIf="activeTab === 'description'">
+    <h3>Description</h3>
+    <p><strong>Product Name:</strong> {{ product?.productName }}</p>
+    <p><strong>SKU:</strong> {{ product?.sku }}</p>
+    <p><strong>Short Description:</strong> {{ product?.shortDescription }}</p>
+    <p><strong>Long Description:</strong> {{ product?.longDescription }}</p>
+    <p><strong>Shipping Notes:</strong> {{ product?.shippingNotes }}</p>
+    <p><strong>Warranty Info:</strong> {{ product?.warrantyInfo }}</p>
+    <p><strong>Category:</strong> {{ product?.categoryName }}</p>
+    <p><strong>Brand:</strong> {{ product?.brandName }}</p>
+    <p>
+      <strong>Visible To FrontEnd:</strong>
+      {{ product?.visibleToFrontEnd ? "Yes" : "No" }}
+    </p>
+    <p>
+      <strong>Featured Product:</strong>
+      {{ product?.featuredProduct ? "Yes" : "No" }}
+    </p>
+  </div>
+
+  <div *ngIf="activeTab === 'specifications'">
+    <h3>Specifications</h3>
+    <p>Specifications content goes here...</p>
+  </div>
+
+  <div *ngIf="activeTab === 'reviews'">
+    <h3>Reviews</h3>
+    <p>Reviews content goes here...</p>
+  </div>
+
+  <div *ngIf="activeTab === 'inventory'">
+    <h3>Inventory</h3>
+    <p>Inventory content goes here...</p>
+  </div>
+
+  <div *ngIf="activeTab === 'pricing'">
+    <h3>Pricing</h3>
+    <p>Pricing content goes here...</p>
+  </div>
+</div>

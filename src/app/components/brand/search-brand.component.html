@@ -1,0 +1,36 @@
+<div class="search-brand-container">
+  <h2>Search Brand</h2>
+  <form [formGroup]="brandForm" (ngSubmit)="onSearch()">
+    <input type="text" placeholder="Brand Name" formControlName="brandName" />
+    <button type="submit">Search</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Brand Name</th>
+        <th>Description</th>
+        <th>Assets</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let brand of displayedBrands">
+        <td>
+          <a [routerLink]="['/brands/details', brand._id]">{{ brand.brandName }}</a>
+        </td>
+        <td>{{ brand.description }}</td>
+        <td>{{ brand.assets }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <button
+      *ngFor="let page of [].constructor(totalPages); let i = index"
+      (click)="onPageChange(i)"
+      [class.active]="i === currentPage"
+    >
+      {{ i + 1 }}
+    </button>
+  </div>
+</div>

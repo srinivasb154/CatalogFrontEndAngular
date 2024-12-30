@@ -1,0 +1,63 @@
+<div class="add-reviews-container">
+  <a [routerLink]="['/products']">Back to Product Options</a>
+  <h2>Add Product Reviews</h2>
+
+  <!-- Main Form -->
+  <form [formGroup]="reviewForm">
+    <!-- Dropdowns for Category, Brand, and Product -->
+    <div class="inline-fields">
+      <label for="categoryId">Category:</label>
+      <select id="categoryId" formControlName="categoryId">
+        <option value="">-- Select Category --</option>
+        <option *ngFor="let category of categories" [value]="category._id">
+          {{ category.categoryName }}
+        </option>
+      </select>
+
+      <label for="brandId">Brand:</label>
+      <select id="brandId" formControlName="brandId">
+        <option value="">-- Select Brand --</option>
+        <option *ngFor="let brand of brands" [value]="brand._id">
+          {{ brand.brandName }}
+        </option>
+      </select>
+
+      <button type="button" (click)="fetchProducts()">Fetch Products</button>
+    </div>
+
+    <div>
+      <label for="productId">Product:</label>
+      <select id="productId" formControlName="productId" (change)="onProductSelect()">
+        <option value="">-- Select Product --</option>
+        <option *ngFor="let product of products" [value]="product._id">
+          {{ product.productName }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Reviews Section -->
+    <div *ngIf="reviewsVisible">
+      <h3>Reviews</h3>
+
+      <div *ngFor="let review of reviews.controls; let i = index" [formGroup]="reviewGroup(i)">
+        <label for="user">User:</label>
+        <input id="user" formControlName="user" />
+
+        <label for="comment">Comment:</label>
+        <input id="comment" formControlName="comment" />
+
+        <label for="rating">Rating:</label>
+        <input id="rating" type="number" formControlName="rating" />
+
+        <button type="button" (click)="removeReview(i)">Remove</button>
+      </div>
+
+      <button type="button" (click)="addReview()">Add Review</button>
+      <button type="button" (click)="submitReviews()">Submit Reviews</button>
+    </div>
+  </form>
+
+  <!-- Success/Error Messages -->
+  <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+</div>

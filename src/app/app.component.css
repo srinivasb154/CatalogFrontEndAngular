@@ -1,0 +1,42 @@
+/* Global Navigation Bar Styles */
+.navbar {
+    background-color: #007bff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    color: white;
+  }
+  
+  .nav-menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-menu li {
+    display: inline;
+  }
+  
+  .nav-menu li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .nav-menu li a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Global Content Container */
+  .app-container {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .content {
+    padding: 20px;
+  }
+  

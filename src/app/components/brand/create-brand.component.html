@@ -1,0 +1,33 @@
+<div class="create-brand-container">
+    <h2>Create Brand</h2>
+    <form [formGroup]="brandForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="brandName">Brand Name</label>
+        <input id="brandName" type="text" formControlName="brandName" placeholder="Enter brand name" />
+        <div *ngIf="brandForm.get('brandName')?.touched && brandForm.get('brandName')?.invalid">
+          <small *ngIf="brandForm.get('brandName')?.errors?.['required']">Brand Name is required.</small>
+          <small *ngIf="brandForm.get('brandName')?.errors?.['minlength']">Minimum 3 characters required.</small>
+        </div>
+      </div>
+  
+      <div>
+        <label for="description">Description</label>
+        <textarea id="description" formControlName="description" placeholder="Enter description"></textarea>
+        <div *ngIf="brandForm.get('description')?.touched && brandForm.get('description')?.invalid">
+          <small *ngIf="brandForm.get('description')?.errors?.['required']">Description is required.</small>
+          <small *ngIf="brandForm.get('description')?.errors?.['maxlength']">Maximum 500 characters allowed.</small>
+        </div>
+      </div>
+  
+      <div>
+        <label for="assets">Assets</label>
+        <input id="assets" type="text" formControlName="assets" placeholder="Enter assets" />
+      </div>
+  
+      <button type="submit" [disabled]="brandForm.invalid">Submit</button>
+    </form>
+  
+    <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  </div>
+  

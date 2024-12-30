@@ -1,0 +1,14 @@
+.category-details-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h2 {
+    text-align: center;
+  }
+  
+  p {
+    margin: 10px 0;
+  }
+  

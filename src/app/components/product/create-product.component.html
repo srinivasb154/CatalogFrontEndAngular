@@ -1,0 +1,127 @@
+<div class="create-product-container">
+  <h2>Create Product</h2>
+  <p>Product creation form goes here...</p>
+  <a routerLink="/products">Back to Product Options</a>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="productName">Product Name</label>
+      <input
+        id="productName"
+        type="text"
+        formControlName="productName"
+        placeholder="Enter product name"
+      />
+      <div
+        *ngIf="
+          productForm.get('productName')?.touched &&
+          productForm.get('productName')?.invalid
+        "
+      >
+        <small *ngIf="productForm.get('productName')?.errors?.['required']"
+          >Product Name is required.</small
+        >
+        <small *ngIf="productForm.get('productName')?.errors?.['minlength']"
+          >Minimum 3 characters required.</small
+        >
+      </div>
+    </div>
+
+    <div>
+      <label for="sku">SKU</label>
+      <input
+        id="sku"
+        type="text"
+        formControlName="sku"
+        placeholder="Enter SKU"
+      />
+    </div>
+
+    <div>
+      <label for="shortDescription">Short Description</label>
+      <textarea
+        id="shortDescription"
+        formControlName="shortDescription"
+        placeholder="Enter short description"
+      ></textarea>
+      <div
+        *ngIf="
+          productForm.get('shortDescription')?.touched &&
+          productForm.get('shortDescription')?.invalid
+        "
+      >
+        <small *ngIf="productForm.get('shortDescription')?.errors?.['required']"
+          >Short Description is required.</small
+        >
+      </div>
+    </div>
+
+    <div>
+      <label>Long Description:</label>
+      <ngx-editor
+        [editor]="editor"
+        formControlName="longDescription"
+      ></ngx-editor>
+    </div>
+
+    <div>
+      <label for="shippingNotes">Shipping Notes</label>
+      <input
+        id="shippingNotes"
+        type="text"
+        formControlName="shippingNotes"
+        placeholder="Enter shipping notes"
+      />
+    </div>
+
+    <div>
+      <label for="warrantyInfo">Warranty Info</label>
+      <input
+        id="warrantyInfo"
+        type="text"
+        formControlName="warrantyInfo"
+        placeholder="Enter warranty info"
+      />
+    </div>
+
+    <div>
+      <label for="visibleToFrontEnd">Visible To Front End</label>
+      <input
+        id="visibleToFrontEnd"
+        type="checkbox"
+        formControlName="visibleToFrontEnd"
+      />
+    </div>
+
+    <div>
+      <label for="featuredProduct">Featured Product</label>
+      <input
+        id="featuredProduct"
+        type="checkbox"
+        formControlName="featuredProduct"
+      />
+    </div>
+
+    <div>
+      <label for="categoryId">Category</label>
+      <select id="categoryId" formControlName="categoryId">
+        <option *ngFor="let category of categories" [value]="category._id">
+          {{ category.categoryName }}
+        </option>
+      </select>
+    </div>
+
+    <div>
+      <label for="brandId">Brand</label>
+      <select id="brandId" formControlName="brandId">
+        <option *ngFor="let brand of brands" [value]="brand._id">
+          {{ brand.brandName }}
+        </option>
+      </select>
+    </div>
+
+    <button type="submit" [disabled]="productForm.invalid">Submit</button>
+  </form>
+
+  <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+</div>

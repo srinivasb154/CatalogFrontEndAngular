@@ -1,0 +1,33 @@
+.product-tab-container {
+    margin: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .tabs {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .tabs li {
+    margin-right: 20px;
+    cursor: pointer;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-bottom: none;
+  }
+  
+  .tabs li.active {
+    font-weight: bold;
+    background-color: #f4f4f4;
+  }
+  
+  .tabs li:hover {
+    background-color: #eee;
+  }
+  
+  button {
+    margin-bottom: 20px;
+  }
+  

@@ -1,0 +1,19 @@
+.product-import-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+button {
+  margin-top: 10px;
+}
+
+.message {
+  margin-top: 20px;
+  font-weight: bold;
+  color: green;
+}

@@ -1,0 +1,37 @@
+<div class="category-search-container">
+  <h2>Search Category</h2>
+  <form [formGroup]="categoryForm" (ngSubmit)="onSearch()">
+    <input type="text" placeholder="Category Name" formControlName="categoryName" />
+    <input type="text" placeholder="Parent Category" formControlName="parentCategory" />
+    <button type="submit">Search</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Category Name</th>
+        <th>Parent Category</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of displayedCategories">
+        <td>
+          <a [routerLink]="['/categories/details', category._id]">{{ category.categoryName }}</a>
+        </td>
+        <td>{{ category.parentCategory }}</td>
+        <td>{{ category.description }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <button
+      *ngFor="let page of [].constructor(totalPages); let i = index"
+      (click)="onPageChange(i)"
+      [class.active]="i === currentPage"
+    >
+      {{ i + 1 }}
+    </button>
+  </div>
+</div>

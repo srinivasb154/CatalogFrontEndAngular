@@ -1,0 +1,58 @@
+<div class="category-container">
+  <h2>Create Category</h2>
+  <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="categoryName">Category Name</label>
+      <input
+        id="categoryName"
+        type="text"
+        formControlName="categoryName"
+        placeholder="Enter category name"
+      />
+      <div *ngIf="categoryForm.get('categoryName')?.touched && categoryForm.get('categoryName')?.invalid">
+        <small *ngIf="categoryForm.get('categoryName')?.errors?.['required']">
+          Category Name is required.
+        </small>
+        <small *ngIf="categoryForm.get('categoryName')?.errors?.['minlength']">
+          Minimum 3 characters required.
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="parentCategory">Parent Category</label>
+      <input
+        id="parentCategory"
+        type="text"
+        formControlName="parentCategory"
+        placeholder="Enter parent category"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        placeholder="Enter description"
+      ></textarea>
+      <div *ngIf="categoryForm.get('description')?.touched && categoryForm.get('description')?.invalid">
+        <small *ngIf="categoryForm.get('description')?.errors?.['required']">
+          Description is required.
+        </small>
+        <small *ngIf="categoryForm.get('description')?.errors?.['maxlength']">
+          Maximum 500 characters allowed.
+        </small>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="categoryForm.invalid">Submit</button>
+  </form>
+
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+  </div>
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+</div>
