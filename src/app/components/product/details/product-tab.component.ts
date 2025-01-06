@@ -28,6 +28,11 @@ export class ProductTabComponent implements OnInit {
       console.error('No product details found in service');
       this.router.navigate(['/products/search']);
     }
+
+    // Handle reviews if not present
+    if (!this.product?.reviews) {
+      this.product.reviews = [];
+    }
   }
 
   switchTab(tabName: string): void {

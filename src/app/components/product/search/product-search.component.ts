@@ -101,6 +101,17 @@ export class ProductSearchComponent implements OnInit {
         'Unknown Brand',
     };
 
+    this.productService.getProductReviews(product._id).subscribe(
+      (reviews) => {
+        // Include reviews in the enhanced product
+        console.error('Reviews :', reviews);
+        enhancedProduct.reviews = reviews;
+      },
+      (error) => {
+        console.error('Error fetching product reviews:', error);
+      }
+    );
+
     // Log the enhanced product for debugging
     console.log('Navigating with product:', enhancedProduct);
 

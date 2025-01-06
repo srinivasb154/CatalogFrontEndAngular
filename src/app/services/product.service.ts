@@ -40,6 +40,10 @@ export class ProductService {
     });
   }
 
+  getProductReviews(productId: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/products/${productId}/reviews`);
+  }
+
   saveProductReviews(productId: string, reviews: any[]): Observable<any> {
     return this.http.post(`${this.apiUrl}/products/${productId}/reviews`, {
       reviews,

@@ -59,7 +59,21 @@
 
   <div *ngIf="activeTab === 'reviews'">
     <h3>Reviews</h3>
-    <p>Reviews content goes here...</p>
+    <div *ngIf="product?.reviews.length > 0; else noReviews">
+      <div *ngFor="let review of product.reviews">
+        <p><strong>Reviewer:</strong> {{ review.user }}</p>
+        <p><strong>Comment:</strong> {{ review.comment }}</p>
+        <p><strong>Rating:</strong> {{ review.rating }}</p>
+        <p>
+          <strong>Created At:</strong>
+          {{ review.createdAt | date : "shortDate" }}
+        </p>
+        <hr />
+      </div>
+    </div>
+    <ng-template #noReviews>
+      <p>No reviews available for this product.</p>
+    </ng-template>
   </div>
 
   <div *ngIf="activeTab === 'inventory'">
